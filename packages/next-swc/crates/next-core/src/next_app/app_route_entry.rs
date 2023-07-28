@@ -22,7 +22,13 @@ use turbopack_binding::{
     },
 };
 
-use crate::{next_app::AppEntry, parse_segment_config_from_source, util::NextRuntime};
+use crate::{
+    next_app::AppEntry,
+    next_edge::route_regex::get_named_middleware_regex,
+    next_manifests::{EdgeFunctionDefinition, MiddlewareMatcher, MiddlewaresManifestV2, Regions},
+    parse_segment_config_from_source,
+    util::NextRuntime,
+};
 
 /// Computes the entry for a Next.js app route.
 #[turbo_tasks::function]
