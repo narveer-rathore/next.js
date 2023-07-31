@@ -308,13 +308,14 @@ export async function imageOptimizer(
       const animate =
         ANIMATABLE_TYPES.includes(upstreamType) && isAnimated(upstreamBuffer)
       if (vector || animate) {
-        await writeToCacheDir(
-          hashDir,
-          upstreamType,
-          maxAge,
-          expireAt,
-          upstreamBuffer
-        )
+        if (!nextConfig.disableImageOptimizerFSCache)
+          await writeToCacheDir(
+            hashDir,
+            upstreamType,
+            maxAge,
+            expireAt,
+            upstreamBuffer
+          )
         sendResponse(
           req,
           res,
@@ -449,13 +450,14 @@ export async function imageOptimizer(
         // End Squoosh transformation logic
       }
       if (optimizedBuffer) {
-        await writeToCacheDir(
-          hashDir,
-          contentType,
-          maxAge,
-          expireAt,
-          optimizedBuffer
-        )
+        if (!nextConfig.disableImageOptimizerFSCache)
+          await writeToCacheDir(
+            hashDir,
+            contentType,
+            maxAge,
+            expireAt,
+            optimizedBuffer
+          )
         sendResponse(
           req,
           res,

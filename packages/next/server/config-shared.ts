@@ -83,6 +83,7 @@ export type NextConfig = { [key: string]: any } & {
   env?: { [key: string]: string }
   distDir?: string
   cleanDistDir?: boolean
+  disableImageOptimizerFSCache?: boolean
   assetPrefix?: string
   useFileSystemPublicRoutes?: boolean
   generateBuildId?: () => string | null | Promise<string | null>
@@ -208,6 +209,7 @@ export const defaultConfig: NextConfig = {
     canonicalBase: '',
   },
   basePath: '',
+  disableImageOptimizerFsCache: false,
   sassOptions: {},
   trailingSlash: false,
   i18n: null,
